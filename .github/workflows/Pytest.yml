@@ -1,0 +1,47 @@
+name: Setup Python
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  # This workflow contains a single job called "build"
+  setup_py:
+    # The type of runner that the job will run on
+    runs-on: [ windows-latest ]
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name : Retrieve Shell Information and working directory
+        run : |
+          python --version
+          python3 --version
+
+      - name: List Tool Cache 
+        run: ls \hostedtoolcache\windows\Python 
+
+      - name: Install Python using the setup Python Command
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.6.7'
+
+      - name: List Tool Cache 
+        run: ls \hostedtoolcache\windows\Python 
+
+      - name: Check for Installed Python Version after 'Setup Python'
+        run: |
+          python3 --version
+          echo $PATH
+          pip install numpy
+          
+
+
+          
