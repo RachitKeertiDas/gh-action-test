@@ -24,11 +24,12 @@ jobs:
         run : |
           python --version
           python3 --version
+          ls C:\hostedtoolcache\windows\Python
 
       - name: Install Python using the setup Python Command
         uses: actions/setup-python@v2
         with:
-          python-version: '3.6.7'
+          python-version: '3.9.11'
 
       - name: Check for Installed Python Version after 'Setup Python'
         run: |
